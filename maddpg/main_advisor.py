@@ -151,6 +151,7 @@ p = mp.Process(target=eval_model_q, args=(test_q, done_training, args))
 p.start()
 beta = 1
 p = 0.99995
+log_interval, log_target = 100, 0
 for i_episode in range(args.num_episodes):
     obs_n = env.reset()
     info = {'n': obs_n}
@@ -203,7 +204,9 @@ for i_episode in range(args.num_episodes):
                       format(i_episode, value_loss, agent.critic_optim.param_groups[0]['lr']))
 
         if done_n[0] or terminal:
-            print('train epidoe reward', episode_reward)
+            if i_episode > log_target:
+                print('train epidoe reward', episode_reward)
+                log_target += log_interval
             episode_step = 0
             break
     beta = p ** i_episode

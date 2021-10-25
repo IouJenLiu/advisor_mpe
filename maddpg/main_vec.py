@@ -138,7 +138,7 @@ test_q = Queue()
 done_training = Value('i', False)
 p = mp.Process(target=eval_model_q, args=(test_q, done_training, args))
 p.start()
-
+log_interval, log_target = 100, 0
 for i_episode in range(args.num_episodes):
     obs_n = env.reset()
     info = {'n': obs_n}
@@ -193,7 +193,9 @@ for i_episode in range(args.num_episodes):
                     hard_update(agent.critic_target, agent.critic)
 
         if done_n[0] or terminal:
-            print('train epidoe reward', episode_reward)
+            if i_episode > log_target:
+                print('train epidoe reward', episode_reward)
+                log_target += log_interval
             episode_step = 0
             break
     if not args.fixed_lr:

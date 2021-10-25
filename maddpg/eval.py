@@ -54,8 +54,8 @@ def eval_model_q(test_q, done_training, args):
                             good_reward = np.sum(agents_rew)
                             good_eval_rewards.append(good_reward)
                             #adversary_eval_rewards.append(adversary_reward)
-                            if n_eval % 100 == 0:
-                                print('test reward', episode_reward)
+                            #if n_eval % 100 == 0:
+                            #    print('test reward', episode_reward)
                             break
                 if np.mean(eval_rewards) > best_eval_reward:
                     best_eval_reward = np.mean(eval_rewards)

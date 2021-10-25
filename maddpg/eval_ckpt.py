@@ -41,8 +41,8 @@ def eval_model_q(args, agent):
                 obs_n = next_obs_n
                 if done_n[0] or terminal:
                     eval_rewards.append(episode_reward)
-                    if n_eval % 100 == 0:
-                        print('test reward', episode_reward)
+                    #if n_eval % 100 == 0:
+                    #    print('test reward', episode_reward)
                     break
 
         print("========================================================")

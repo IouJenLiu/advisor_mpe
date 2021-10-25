@@ -144,6 +144,7 @@ p = mp.Process(target=eval_model_q, args=(test_q, done_training, args))
 p.start()
 beta = 1
 p = 0.99995
+log_interval, log_target = 100, 0
 for i_episode in range(args.num_episodes):
     obs_n = env.reset()
     info = {'n': obs_n}
@@ -185,12 +186,14 @@ for i_episode in range(args.num_episodes):
                     batch = Transition(*zip(*transitions))
                     imitation_loss = agent.update_actor_imitation(batch, agent_ex)
                     updates += 1
+
                 print('episode {}, imitation loss {}, p_lr {}'.
                       format(i_episode, imitation_loss, agent.actor_lr))
 
-
         if done_n[0] or terminal:
-            print('train epidoe reward', episode_reward)
+            if i_episode > log_target:
+                print('train epidoe reward', episode_reward)
+                log_target += log_interval
             episode_step = 0
             break
     beta = p ** i_episode
