@@ -1,5 +1,4 @@
 ## Bridging the Imitation Gap by Adaptive Insubordination #
-### NeurIPS 2021
 
 
 The repository contains Pytorch implementation of ADVISOR and baselines on the Coordinated Navigation (n=3) Task.
@@ -39,3 +38,15 @@ The above scripts evaluate the agents trained by ADVISOR, RL + IL with static we
 The above scripts train the agents  using ADVISOR, RL + IL with static weighting, IL, and RL on Cooperative Navigation
 
 
+### Reference
+If you use this work, please cite:
+
+```text
+@inproceedings{advisor,
+  title={Bridging the Imitation Gap by Adaptive Insubordination},
+  author={Weihs, Luca and Jain, Unnat and Liu, Iou-Jen and Salvador, Jordi and Lazebnik, Svetlana and Kembhavi, Aniruddha and Schwing, Alexander},
+  booktitle={NeurIPS},
+  year={2021},
+  note = {the first two authors contributed equally},
+}
+```
